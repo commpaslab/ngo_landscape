@@ -1,0 +1,15 @@
+.httr-oauth
+
+# ignore supplementary folders
+dev/
+
+# ignore data files and image files
+*.RDS
+*.geojson
+*.Rdata
+*.Rhistory
+*.Rapp.history
+.Rproj.user/
+
+# ignore shinyapps connection
+cville-nonprofits/rsconnect/

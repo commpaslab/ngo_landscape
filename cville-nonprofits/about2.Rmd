@@ -1,0 +1,69 @@
+---
+title: "About the Data"
+author: "Michele Claibourn"
+date: "December 12, 2019"
+output: html_document
+---
+
+## Data Source
+
+The data is from the Internal Revenue Service's [Exempt Organizations Business Master File](https://www.irs.gov/charities-non-profits/exempt-organizations-business-master-file-extract-eo-bmf) as supplemented by the National Center for Charitable Statistics at the Urban Institute. Exempt organization information is extracted from the IRS Business Master File and asset, income, and revenue amounts are added from the most recent Form 990 series return filed by the organization. NCCS provides additional categories and codes derived from the National Taxonomy of Exempt Entities (NTEE) classification system.
+
+Data Citation: Urban Institute, National Center for Charitable Statistics. (2019). Internal Revenue Service, Exempt Organizations Business Master File. [bmf.bm1908.csv]. Available from: [https://nccs-data.urban.org](https://nccs-data.urban.org).
+
+## Data Defintions
+
+We retained all records from the EO BMF file with FIPS codes within the localities in the greater Charlottesville region and that had Foundation Codes of 04 - Private non-operating foundation or 15 - Organization which receives a substantial part of its support from a governmental unit or the general public.
+
+We used the Goolge Geocoding API to find the latitude and longitude of each organization, based on the address given in the data. We also renamed the variables. The variable definitions follow:
+
+| Variable Name | Variable Definition |
+|---------------|---------------------|
+| name | Organization name |
+| sec_name | Secondary organization name |
+| ein | Employer identification number | 
+| assets | Total assets (end of year) from most recent Form 990 |
+| income | Gross receipts from most recently filed Form 990 | 
+| taxper | Ending date for tax period of financial data in "yyyymm" format (201808 = August 2018) |
+| address | Street address |
+| city | City | 
+| state | Two-letter state abbreviation | 
+| zip5 | First 5 digits of zip code | 
+| fips | 2-digit State + 3-digit County FIPS code | 
+| cassets | Total Assets (Book Value at end of year) from most recent Form 990 | 
+| ctotrev | Total Revenue from most recent Form 990 | 
+| ctaxper | Ending date for tax period of NCCS financial data in yyyymm format | 
+| filer | Filed 990 return within 24 months of BMF file? (Y/N) | 
+| zfiler | Filed 990 return with zero income and assets within 24 months of BMF file? (Y/N) | 
+| code | Foundation code, reason for/type of 501(c)(3) exempt status | 
+| type | Public charity or private foundation? |
+| type2 | Reporting public charity group - Operating, Supporting, Mutual Benefit | 
+| major_sector | NTEE Major subsector (5) | 
+| major_group | NTEE major group (10) | 
+| major_group2 | NTEE major group (12), NTEE major group plus higher education and hospitals | 
+| major_category | Major NTEE category (17) |
+| major_category2 | NTEE-CC Major Group (26) | 
+| locality | Name of locality | 
+
+## Data Preparation
+
+**Data inspection:** NCCS notes that while they perform some data checks, errors may still exist -- in financial data, geographic information, and NTEE codes -- and advises users to inspect the data and make adjustments where appropriate. We have manually reviewed the regional data for errors, including:
+
+* Verifying the address/location information for organizations that appear to fall outside of the Charlottesville region;
+* Inspecting the Foundation Codes for organizations that are initially in our categories of interest (public charities, grant-making foundations) to assess if they are appropriately categorized;
+* Checking the larger set of organizations in in the initial data for the presence of organizations that should have been captured in our categories of interest but were not;
+* Evaluating the plausibility of the NTEE classifications.
+
+We have maintained a record of adjustments we have implemented.
+
+**Data augmentation:** We plan to begin augmenting the dataset with additional information. Ideally, we would like add, where available:
+
+* Executive director 
+* Primary contact information
+* Physical address where current address is a PO Box
+* Web address, or links to organizational annual reports
+* Mission statement
+
+We welcome community suggestions for further information we could seek that would be of value to the community.
+
+        
